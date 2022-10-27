@@ -15,8 +15,9 @@ const playerImage = new Image();
 playerImage.src = 'images/shadow_dog.png';
 const spriteWidth = 575;
 const spriteHeight = 523; // helps us determine the proper height and width of a sprite from a sprite sheet
-let frameX = 0; // cycles sprite horiz
-let frameY = 0; // cycles sprite vert
+let playerState = 'run';
+// let frameX = 0; // cycles sprite horiz
+// let frameY = 0; // cycles sprite vert
 // by setting frame variables, we do not have to manually change sprites within the function
 let gameFrame = 0;
 const staggerFrames = 5;
@@ -29,7 +30,39 @@ const animationStates = [
     {
         name: 'jump',
         frames: 7,
-    }
+    },
+    {
+        name: 'fall',
+        frames: 7,
+    },
+    {
+        name: 'run',
+        frames: 9,
+    },
+    {
+        name: 'dizzy',
+        frames: 11,
+    },
+    {
+        name: 'sit',
+        frames: 5,
+    },
+    {
+        name: 'roll',
+        frames: 7,
+    },
+    {
+        name: 'bite',
+        frames: 7,
+    },
+    {
+        name: 'ko',
+        frames: 12,
+    },
+    {
+        name: 'getHit',
+        frames: 4,
+    },
 ];
 
 animationStates.forEach((state, index) => {
@@ -48,12 +81,13 @@ animationStates.forEach((state, index) => {
 function animate() {
     // clears canvas
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    let position = Math.floor(gameFrame/ staggerFrames) % 6;
-    frameX = spriteWidth * position;
+    let position = Math.floor(gameFrame/ staggerFrames) % spriteAnimations[playerState].loc.length;
+    let frameX = spriteWidth * position;
+    let frameY = spriteAnimations[playerState].loc[position].y;
     // fills canvas
     // ctx.fillRect(100, 50, 100, 100);
     // draw image can take 9 arguments that crop the images
-    ctx.drawImage(playerImage, frameX, frameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
+    ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
 
     gameFrame++;
     requestAnimationFrame(animate);
