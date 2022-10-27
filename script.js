@@ -12,7 +12,7 @@ const CANVAS_HEIGHT = canvas.height = 600;
 
 const playerImage = new Image();
 // creates a new image element
-playerImage.src = 'shadow_dog.png'
+playerImage.src = 'images/shadow_dog.png'
 
 // animation loop
 function animate() {
