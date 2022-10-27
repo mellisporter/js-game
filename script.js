@@ -14,7 +14,9 @@ const playerImage = new Image();
 // creates a new image element
 playerImage.src = 'images/shadow_dog.png';
 const spriteWidth = 575;
-const spriteHeight = 523;
+const spriteHeight = 523; // helps us determine the proper height and width of a sprite from a sprite sheet
+let frameX = 0;
+let frameY = 0; // by setting frame variables, we do not have to manually change sprites within the function
 
 // animation loop
 function animate() {
@@ -22,8 +24,8 @@ function animate() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
     // fills canvas
     // ctx.fillRect(100, 50, 100, 100);
-    // draw image can take 9 arguments
-    ctx.drawImage(playerImage, 0, 0, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
+    // draw image can take 9 arguments that crop the images
+    ctx.drawImage(playerImage, frameX * spriteWidth, frameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
     requestAnimationFrame(animate);
 };
 
