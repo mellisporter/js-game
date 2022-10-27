@@ -1,3 +1,10 @@
+let playerState = 'idle';
+const dropdown = document.getElementById("animations");
+dropdown.addEventListener('change' , function(e){
+    playerState = e.target.value;
+})
+
+
 const canvas = document.getElementById('canvas1'); 
 // context is equal to canvas variable
 const ctx = canvas.getContext('2d');
@@ -15,7 +22,6 @@ const playerImage = new Image();
 playerImage.src = 'images/shadow_dog.png';
 const spriteWidth = 575;
 const spriteHeight = 523; // helps us determine the proper height and width of a sprite from a sprite sheet
-let playerState = 'run';
 // let frameX = 0; // cycles sprite horiz
 // let frameY = 0; // cycles sprite vert
 // by setting frame variables, we do not have to manually change sprites within the function
